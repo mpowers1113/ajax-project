@@ -1,20 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
+  <script src="https://kit.fontawesome.com/b9e9daeb6a.js" crossorigin="anonymous"></script>
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-  <header>
-  </header>
   <main>
+    <div class="container" data-view="select-workout">
+      <div class="background-main-page">
+        <div class="login-overlay">
+
+          <div class="row header justify-align-center">
+            <h1>What are you working out today?</h1>
+          </div>
+          <div class="row justify-align-center">
+            <button id="push-button" data-view="push-workout" class="center-text big-orange-button nav">Push</button>
+          </div>
+          <div class="row justify-align-center">
+            <button id="pull-button" class="center-text big-orange-button nav" data-view="pull-workout">Pull</button>
+          </div>
+          <div class="row justify-align-center">
+            <button id="legs-button" class="big-orange-button nav" data-view="legs-workout">Legs</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="container hidden" data-view="push-workout">
+      <div class="background-push">
+        <div class="login-overlay">
+          <div class="row header">
+            <i class="fas fa-angle-double-left fa-2x back"></i>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <h1>Chest</h1>
+              <ul class="chest-list">
+                <li>Bench Press</li>
+                <li>Dumbbell Flys</li>
+                <li>Cable Cross-over</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <h1>Delts</h1>
+              <ul class="delts-list">
+                <li>Overhead Press</li>
+                <li>Lateral Raise</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <h1>Triceps</h1>
+              <ul class="triceps-list">
+                <li>Bench Press</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container hidden" data-view="pull-workout">
+      <div class="background-pull">
+        <div class="login-overlay">
+          <div class="row header">
+            <i class="fas fa-angle-double-left fa-2x back"></i>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <h1>Lats</h1>
+              <ul class="lats-list">
+                <li>Pull-ups</li>
+                <li>Rows</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <h1>Traps</h1>
+              <ul class="traps-list">
+                <li>Shrugs</li>
+                <li>Meadows Row</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <h1>Biceps</h1>
+              <ul class="biceps-list">
+                <li>Preacher Curls</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container hidden" data-view="legs-workout">
+      <div class="background-legs">
+        <div class="login-overlay">
+          <div class="row header">
+            <i class="fas fa-angle-double-left fa-2x back"></i>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <h1>Quads</h1>
+              <ul class="quads-list">
+                <li>Squats</li>
+                <li>Leg Extensions</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <h1>Hamstrings</h1>
+              <ul class="hams-list">
+                <li>Leg Curls</li>
+                <li>Romanian Deadlift</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <h1>Glutes</h1>
+              <ul class="glutes-list">
+                <li>Hip Thrust</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
