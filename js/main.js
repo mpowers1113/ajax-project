@@ -54,21 +54,7 @@ function goBackHandler(){
 
 $goBack.forEach(item => item.addEventListener('click', goBackHandler));
 
-//----------Render Push Exercises------------------
-
-function renderDelts() {
-  var numExercises = 0;
-  for (var i = Math.floor(Math.random() * exercises.delts.length); numExercises< 2; i++){
-    var $li = document.createElement('li');
-    $li.setAttribute('id', exercises.delts[i].uuid);
-    var $p = document.createElement('p');
-    $p.textContent = exercises.delts[i].name;
-    $li.appendChild($p)
-  
-    $deltsList.appendChild($li);
-    numExercises++;
-      }
-    }      
+//----------Render Push Exercises------------------    
 
 function renderExercises(dataMuscleValue, id){
  for (var key in exercises[id]){
