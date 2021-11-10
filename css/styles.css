@@ -1,0 +1,52 @@
+:root{
+  --orange-color: #F55A00;
+  --orange-background: rgba(245, 90, 0, .6);
+  --dark-grey: #2d2d2d;
+}
+
+body {
+  background-color: #010101;
+}
+
+.background-main-page{
+  background-image: url(/images/mainbackground.png);
+  background-position: center;
+  background-size:cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: 100vh;
+}
+
+.select-workout {
+  color: var(--orange-color);
+  width: 375px;
+  height: 812px;
+}
+
+.select-workout .row {
+  padding-top: 1rem;
+}
+
+.header {
+  padding: 3rem 1rem 1rem 1rem;
+  text-align: center;
+}
+
+li {
+  max-width: 800px;
+  border: 2px solid var(--orange-color);
+  margin: 1rem 0;
+  list-style-type: none;
+  background-color: var(--dark-grey);
+  border-radius: 20px;
+  padding: .5rem;
+
+}
+
+i {
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+
