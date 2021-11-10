@@ -49,4 +49,55 @@ i {
   margin-left: 1rem;
 }
 
+.column-80 {
+  flex-basis: 80%;
+}
 
+.tag {
+  width: 125px;
+  height: 51px;
+  background-color: var(--orange-background);
+  color: white;
+  border-radius: 6px;
+  border: none;
+  margin: .5rem;
+  cursor: pointer;
+}
+
+.tag:hover {
+  background-color: var(--orange-color);
+}
+
+.line-break div {
+  height: 1px;
+  width: 100px;
+  background-color: rgba(196, 196, 196, .55);
+  margin: 0 1.5rem;
+}
+
+.line-break {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.line-break p {
+  color: white;
+}
+
+.tag-buttons {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.select-tag{
+  background-color: #010101;
+  color: var(--orange-color);
+  max-width: 100%;
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+}
