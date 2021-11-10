@@ -29,6 +29,7 @@ h1 {
 body {
   margin: 0 auto;
   font-family: 'Montserrat', sans-serif;
+  background-color: #010101;
 }
 
 .row {

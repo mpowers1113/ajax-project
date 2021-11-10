@@ -29,6 +29,34 @@
       <div class="row justify-align-center">
         <button id="legs" class="big-orange-button nav" data-view="legs-workout" data-muscle-group="legs">Legs</button>
       </div>
+      <div class="row lines">
+        <div class="column-full line-break">
+          <div class="first-half"></div>
+          <p>OR</p>
+          <div class="second-half"></div>
+        </div>
+      </div>
+      <div class="row justify-align-center">
+        <h1 class="no-margin">Select a Tag</h1>
+      </div>
+      <div class="row auto-margin justify-align-center tag-buttons">
+        <a href="#results" data-tag="chest" class="tag chest-tag">Chest</a><a href="#results" data-tag="quads"
+          class="tag quads-tag">Quads</a>
+        <a href="#results" data-tag="glutes" class="tag glutes-tag">Glutes</a><a href="#results" data-tag="hams"
+          class="tag hams-tag">Hams</a>
+        <a href="#results" data-tag="biceps" class="tag biceps-tag">Biceps</a><a href="#results" data-tag="delts"
+          class="tag delts-tag">Delts</a>
+        <a href="#results" data-tag="triceps" class="tag triceps-tag">Triceps</a><a href="#results" data-tag="lats"
+          class="tag lats-tag">Lats</a>
+        <a href="#results" data-tag="traps" class="tag traps-tag">Traps</a><a href="#results" data-tag="abs"
+          class="tag abs-tag">Abs</a>
+      </div>
+      <div class="row">
+        <div class="column-full">
+          <h1 id="results" class="tag-list-header"></h1>
+          <ul class="tag-list"></ul>
+        </div>
+      </div>
     </div>
     <div class="background-push container hidden" data-view="push-workout">
       <div class="row header">
@@ -107,7 +135,6 @@
           </ul>
         </div>
       </div>
-
     </div>
   </main>
   <script src="js/data.js"></script>

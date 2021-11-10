@@ -4,8 +4,8 @@
   --dark-grey: #2d2d2d;
 }
 
-body {
-  background-color: #010101;
+html {
+  scroll-behavior: smooth;
 }
 
 .background-main-page{
@@ -15,7 +15,7 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   max-width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .select-workout {
@@ -31,6 +31,18 @@ body {
 .header {
   padding: 3rem 1rem 1rem 1rem;
   text-align: center;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.auto-margin {
+  margin: auto;
+}
+
+.orange-text {
+  color: var(--orange-color);
 }
 
 li {
@@ -49,4 +61,58 @@ i {
   margin-left: 1rem;
 }
 
+.column-80 {
+  flex-basis: 80%;
+}
 
+.tag {
+  width: 125px;
+  height: 51px;
+  background-color: var(--orange-background);
+  color: white;
+  border-radius: 6px;
+  border: none;
+  margin: .5rem;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 1rem;
+  text-decoration: none;
+}
+
+.tag:hover {
+  background-color: var(--orange-color);
+}
+
+.line-break div {
+  height: 1px;
+  width: 100px;
+  background-color: rgba(196, 196, 196, .55);
+  margin: 0 1.5rem;
+}
+
+.line-break {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.line-break p {
+  color: white;
+}
+
+.tag-buttons {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.select-tag{
+  background-color: #010101;
+  color: var(--orange-color);
+  max-width: 100%;
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+}

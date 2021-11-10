@@ -14,8 +14,9 @@ var $quadsList = document.querySelector('.quads-list');
 var $glutesList = document.querySelector('.glutes-list');
 var $hamsList = document.querySelector('.hams-list');
 var $targetList = document.querySelectorAll('[data-list]');
-
-
+var $tagList = document.querySelector('.tag-list');
+var $tags = document.querySelectorAll('.tag');
+var $tagListHeader = document.querySelector('.tag-list-header');
 var $allUl = document.querySelectorAll('ul');
 
 // ----------Toggle New Entries ----------
@@ -68,7 +69,6 @@ function findTargetList(key){
   return document.querySelector('[data-list="'+key+'"]');
 }
     
-
 function renderList (randomIndexes, muscleGroup, key){
   for (var i = 0; i < randomIndexes.length; i++){
     var eachRandomIndex = randomIndexes[i];
@@ -79,7 +79,7 @@ function renderList (randomIndexes, muscleGroup, key){
     $li.appendChild($p)
     var targetUl = findTargetList(key);
     targetUl.appendChild($li);
-}
+  }
 }
 
 function getDataMuscleVal(event){
@@ -97,4 +97,98 @@ $legsButton.addEventListener('click', getDataMuscleVal);
 
 $pullButton.addEventListener('click', getDataMuscleVal);
 
+//----------render Tag List --------------
+
+function renderTagList(event){
+  removeChilds($tagList);
+  var muscleGroup = event.target.getAttribute('data-tag');
+  for (var i = 0; i < exercises[muscleGroup].length; i++){
+    var eachExercise = exercises[muscleGroup][i];
+    var $li = document.createElement('li');
+    $li.setAttribute('id', eachExercise.uuid);
+    var $p = document.createElement('p');
+    $p.textContent = eachExercise.name;
+    $li.appendChild($p);
+    $tagListHeader.textContent = muscleGroup.toUpperCase();
+    $tagList.appendChild($li);
+  }
+}
+
+function removeChilds (parent){
+  while (parent.lastChild){
+    parent.removeChild(parent.lastChild);
+  }
+}
+
+$tags.forEach(tag => tag.addEventListener('click', renderTagList));
+
+//-----------Data Fetching ----------------
+
+window.addEventListener('load', fetchExercises);
+
+
+function fetchExercises() {
+  if (exercises.delts.length !== 0){
+    return;
+  }
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("GET", "https://wger.de/api/v2/exercise/?language=2&limit=300");
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function(){
+    console.log(xhr.status);
+    data = xhr.response.results;
+    for (var i = 0; i < data.length; i++){
+      var eachItem = data[i];
+      if (eachItem){
+        exercises.all.push(eachItem)
+      }
+      else if (eachItem.muscles.includes(1)){
+        exercises.pull.biceps.push(eachItem);
+        exercises.biceps.push(eachItem);
+      }
+      else if(eachItem.muscles.includes(2)){
+        exercises.push.delts.push(eachItem);
+        exercises.delts.push(eachItem);
+      }
+      else if (eachItem.muscles.includes(4)){
+        exercises.push.chest.push(eachItem);
+        exercises.chest.push(eachItem);
+      }
+      else if (eachItem.muscles.includes(5)){
+        exercises.push.triceps.push(eachItem);
+        exercises.triceps.push(eachItem);
+      }
+      else if (eachItem.muscles.includes(6)){
+        exercises.core.abs.push(eachItem);
+        exercises.abs.push(eachItem);
+      }
+      else if (eachItem.muscles.includes(8)){
+        exercises.legs.glutes.push(eachItem);
+        exercises.glutes.push(eachItem);
+      }
+      else if (eachItem.muscles.includes(10)){
+        exercises.legs.quads.push(eachItem);
+        exercises.quads.push(eachItem);
+      }
+      else if (eachItem.muscles.includes(11)){
+        exercises.legs.hams.push(eachItem);
+        exercises.hams.push(eachItem);
+      }
+      else if (eachItem.muscles.includes(14)){
+        exercises.core.obliques.push(eachItem);
+        exercises.obliques.push(eachItem);
+      }
+      else if (eachItem.muscles.includes(9)){
+        exercises.pull.traps.push(eachItem);
+        exercises.traps.push(eachItem);
+      }
+      else if (eachItem.muscles.includes(12)){
+        exercises.pull.lats.push(eachItem);
+        exercises.lats.push(eachItem);
+      }
+    }
+  });
+  xhr.send()
+}
 
