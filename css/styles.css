@@ -21,11 +21,12 @@
 }
 
 .login-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  background-attachment: fixed;
   background-color: rgba(0,0,0,.6);
 }
 
@@ -34,22 +35,24 @@
 }
 
 .header {
-  margin-top: 2rem;
-  padding: 1rem;
+  padding: 3rem 1rem 1rem 1rem;
   text-align: center;
 }
 
 li {
-  min-height: 56px;
+  max-width: 800px;
   border: 2px solid var(--orange-color);
   margin: 1rem 0;
   list-style-type: none;
   background-color: var(--dark-grey);
   border-radius: 20px;
-  padding: 1rem;
-  margin-right: 1rem;
+  padding: .5rem;
+
 }
 
 i {
   cursor: pointer;
+  margin-left: 1rem;
 }
+
+
