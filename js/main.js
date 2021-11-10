@@ -65,8 +65,8 @@ function renderExercises(id){
   }   
 
 function findTargetList(key){
-       return document.querySelector('[data-list="'+key+'"]');
-  }
+  return document.querySelector('[data-list="'+key+'"]');
+}
     
 
 function renderList (randomIndexes, muscleGroup, key){
