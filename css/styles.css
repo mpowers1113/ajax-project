@@ -15,7 +15,7 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   max-width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .select-workout {
@@ -31,6 +31,18 @@ body {
 .header {
   padding: 3rem 1rem 1rem 1rem;
   text-align: center;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.auto-margin {
+  margin: auto;
+}
+
+.orange-text {
+  color: var(--orange-color);
 }
 
 li {

@@ -29,6 +29,38 @@
       <div class="row justify-align-center">
         <button id="legs" class="big-orange-button nav" data-view="legs-workout" data-muscle-group="legs">Legs</button>
       </div>
+      <div class="row lines">
+        <div class="column-full line-break">
+          <div class="first-half"></div>
+          <p>OR</p>
+          <div class="second-half"></div>
+        </div>
+      </div>
+      <div class="row justify-align-center">
+        <h1 class="no-margin">Select a Tag</h1>
+      </div>
+      <div class="row justify-align-center">
+        <p class="no-margin orange-text">scroll down to view</p>
+      </div>
+
+      <div class="row auto-margin justify-align-center tag-buttons">
+        <button data-tag="chest" class="tag chest-tag">Chest</button><button data-tag="quads"
+          class="tag quads-tag">Quads</button>
+        <button data-tag="glutes" class="tag glutes-tag">Glutes</button><button data-tag="hams"
+          class="tag hams-tag">Hams</button>
+        <button data-tag="biceps" class="tag biceps-tag">Biceps</button><button data-tag="delts"
+          class="tag delts-tag">Delts</button>
+        <button data-tag="triceps" class="tag triceps-tag">Triceps</button><button data-tag="lats"
+          class="tag lats-tag">Lats</button>
+        <button data-tag="traps" class="tag traps-tag">Traps</button><button data-tag="abs"
+          class="tag abs-tag">Abs</button>
+      </div>
+      <div class="row">
+        <div class="column-full">
+          <h1 class="tag-list-header"></h1>
+          <ul class="tag-list"></ul>
+        </div>
+      </div>
     </div>
     <div class="background-push container hidden" data-view="push-workout">
       <div class="row header">
@@ -108,12 +140,14 @@
         </div>
       </div>
     </div>
-    <div data-view="select-tag" class="container select-tag">
+    <!-- <div data-view="select-tag" class="container select-tag">
+      <div class="row header">
+        <i class="fas fa-angle-double-left fa-2x back"></i>
+      </div>
       <div class="row justify-align-center">
         <h1>Select a Tag</h1>
       </div>
       <div class="row tag-buttons">
-        <!-- <div class="column-80"> -->
         <button data-tag="chest" class="tag chest-tag">Chest</button><button data-tag="quads"
           class="tag quads-tag">Quads</button>
         <button data-tag="glutes" class="tag glutes-tag">Glutes</button><button data-tag="hams"
@@ -124,16 +158,19 @@
           class="tag lats-tag">Lats</button>
         <button data-tag="traps" class="tag traps-tag">Traps</button><button data-tag="abs"
           class="tag abs-tag">Abs</button>
-        <!-- </div> -->
       </div>
-      <div class="row lines">
-        <div class="column-full line-break">
-          <div class="first-half"></div>
-          <p>OR</p>
-          <div class="second-half"></div>
+    </div> -->
+    <!-- <div class="container background-main-page" data-view="tag-results">
+      <div class="row header">
+        <i class="fas fa-angle-double-left fa-2x back"></i>
+      </div>
+      <div class="row">
+        <div class="column-full">
+          <h1 class="tag-list-header"></h1>
+          <ul class="tag-list"></ul>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </main>
   <script src="js/data.js"></script>

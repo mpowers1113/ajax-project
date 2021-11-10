@@ -14,6 +14,10 @@ var $quadsList = document.querySelector('.quads-list');
 var $glutesList = document.querySelector('.glutes-list');
 var $hamsList = document.querySelector('.hams-list');
 var $targetList = document.querySelectorAll('[data-list]');
+var $tagList = document.querySelector('.tag-list');
+var $tags = document.querySelectorAll('.tag');
+var $tagListHeader = document.querySelector('.tag-list-header');
+
 
 
 var $allUl = document.querySelectorAll('ul');
@@ -98,3 +102,27 @@ $legsButton.addEventListener('click', getDataMuscleVal);
 $pullButton.addEventListener('click', getDataMuscleVal);
 
 
+//----------render Tag List --------------
+
+function renderTagList(event){
+  removeChilds($tagList);
+  var muscleGroup = event.target.getAttribute('data-tag');
+  for (var i = 0; i < exercises[muscleGroup].length; i++){
+    var eachExercise = exercises[muscleGroup][i];
+    var $li = document.createElement('li');
+    $li.setAttribute('id', eachExercise.uuid);
+    var $p = document.createElement('p');
+    $p.textContent = eachExercise.name;
+    $li.appendChild($p);
+    $tagListHeader.textContent = muscleGroup.toUpperCase();
+    $tagList.appendChild($li);
+  }
+}
+
+function removeChilds (parent){
+  while (parent.lastChild){
+    parent.removeChild(parent.lastChild);
+  }
+}
+
+$tags.forEach(tag => tag.addEventListener('click', renderTagList));
