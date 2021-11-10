@@ -71,7 +71,6 @@ function renderDelts() {
     }      
 
 function renderExercises(dataMuscleValue, id){
- var numExercises = 0; 
  for (var key in exercises[id]){
    var eachExerciseGroup = exercises[id][key];
    var randomIndexArray = [genRandomIndex(eachExerciseGroup), genRandomIndex(eachExerciseGroup)];
