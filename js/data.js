@@ -21,7 +21,6 @@ var exercises = {
     abs: [],
     obliques: []
   },
-
   delts: [],
   chest: [],
   triceps: [],
@@ -99,8 +98,7 @@ function fetchExercises() {
         exercises.lats.push(eachItem);
       }
     }
-    console.log(exercises);
-    });
+  });
   xhr.send()
 }
 
