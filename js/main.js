@@ -1,6 +1,6 @@
-var $pushButton = document.querySelector('#push-button');
-var $pullButton = document.querySelector('#pull-button');
-var $legsButton = document.querySelector('#legs-button');
+var $pushButton = document.querySelector('#push');
+var $pullButton = document.querySelector('#pull');
+var $legsButton = document.querySelector('#legs');
 var $dataViews = document.querySelectorAll('[data-view]');
 var $navItems = document.querySelectorAll('.nav');
 var $goBack = document.querySelectorAll('.back');
@@ -13,6 +13,8 @@ var $bicepsList = document.querySelector('.biceps-list');
 var $quadsList = document.querySelector('.quads-list');
 var $glutesList = document.querySelector('.glutes-list');
 var $hamsList = document.querySelector('.hams-list');
+var $targetList = document.querySelectorAll('[data-list]');
+
 
 var $allUl = document.querySelectorAll('ul');
 
@@ -62,146 +64,56 @@ function renderDelts() {
     var $p = document.createElement('p');
     $p.textContent = exercises.delts[i].name;
     $li.appendChild($p)
+  
     $deltsList.appendChild($li);
     numExercises++;
       }
     }      
 
-$pushButton.addEventListener('click', renderDelts);
+function renderExercises(dataMuscleValue, id){
+ var numExercises = 0; 
+ for (var key in exercises[id]){
+   var eachExerciseGroup = exercises[id][key];
+   var randomIndexArray = [genRandomIndex(eachExerciseGroup), genRandomIndex(eachExerciseGroup)];
+   renderList(randomIndexArray, eachExerciseGroup, key);
+    }
+  }   
 
-
-// ---------Render Chest -------------------
-
-function renderChest(){
-  var numExercises = 0;
-  for (var i = Math.floor(Math.random() * exercises.chest.length); numExercises< 2; i++){
-    var $li = document.createElement('li');
-    $li.setAttribute('id', exercises.chest[i].uuid);
-    var $p = document.createElement('p');
-    $p.textContent = exercises.chest[i].name;
-    $li.appendChild($p)
-    $chestList.appendChild($li);
-    numExercises++;
-      }
+function findTargetList(key){
+  for (var i = 0; i < $targetList.length; i++){
+    if ($targetList[i].getAttribute('data-list') === key){
+       return $targetList[i];
+     }
+    }
 }
 
-$pushButton.addEventListener('click', renderChest);
-
-// ----------Render Triceps-----------------
-
-function renderTriceps(){
-  var numExercises = 0;
-  for (var i = Math.floor(Math.random() * exercises.triceps.length); numExercises< 2; i++){
+function renderList (randomIndexes, muscleGroup, key){
+  for (var i = 0; i < randomIndexes.length; i++){
+    var eachRandomIndex = randomIndexes[i];
     var $li = document.createElement('li');
-    $li.setAttribute('id', exercises.triceps[i].uuid);
+    $li.setAttribute('id', muscleGroup[eachRandomIndex].uuid);
     var $p = document.createElement('p');
-    $p.textContent = exercises.triceps[i].name;
+    $p.textContent = muscleGroup[eachRandomIndex].name;
     $li.appendChild($p)
-    $tricepsList.appendChild($li);
-    numExercises++;
-      }
+    var targetUl = findTargetList(key);
+    targetUl.appendChild($li);
 }
-$pushButton.addEventListener('click', renderTriceps)
-
-//---------Render Quads ----------------
-
-function renderQuads(){
-  var numExercises = 0;
-  for (var i = Math.floor(Math.random() * exercises.quads.length); numExercises< 2; i++){
-    var $li = document.createElement('li');
-    $li.setAttribute('id', exercises.quads[i].uuid);
-    var $p = document.createElement('p');
-    $p.textContent = exercises.quads[i].name;
-    $li.appendChild($p)
-    $quadsList.appendChild($li);
-    numExercises++;
-      }
 }
 
-$legsButton.addEventListener('click', renderQuads);
-
-//-----------Render Glutes---------------
-
-function renderGlutes(){
-  var numExercises = 0;
-  for (var i = Math.floor(Math.random() * exercises.glutes.length); numExercises< 2; i++){
-    var $li = document.createElement('li');
-    $li.setAttribute('id', exercises.glutes[i].uuid);
-    var $p = document.createElement('p');
-    $p.textContent = exercises.glutes[i].name;
-    $li.appendChild($p)
-    $glutesList.appendChild($li);
-    numExercises++;
-      }
+function getDataMuscleVal(event){
+  var dataValue = event.target.getAttribute('data-muscle-group');
+  var pplID = event.target.getAttribute('id');
+  renderExercises(dataValue, pplID);
+}
+function genRandomIndex(eachGroup){
+  var randomGenIndex = Math.floor(Math.random() * eachGroup.length);
+  return randomGenIndex;
 }
 
-$legsButton.addEventListener('click', renderGlutes);
+$pushButton.addEventListener('click', getDataMuscleVal);
 
-//-----------Render Hams------------------
+$legsButton.addEventListener('click', getDataMuscleVal);
 
-function renderHams(){
-  var numExercises = 0;
-  for (var i = Math.floor(Math.random() * exercises.hams.length); numExercises< 2; i++){
-    var $li = document.createElement('li');
-    $li.setAttribute('id', exercises.hams[i].uuid);
-    var $p = document.createElement('p');
-    $p.textContent = exercises.hams[i].name;
-    $li.appendChild($p)
-    $hamsList.appendChild($li);
-    numExercises++;
-      }
-}
+$pullButton.addEventListener('click', getDataMuscleVal);
 
-$legsButton.addEventListener('click', renderHams);
-
-//-----------Render Traps------------------
-
-function renderTraps(){
-  var numExercises = 0;
-  for (var i = Math.floor(Math.random() * exercises.traps.length); numExercises< 2; i++){
-    var $li = document.createElement('li');
-    $li.setAttribute('id', exercises.traps[i].uuid);
-    var $p = document.createElement('p');
-    $p.textContent = exercises.traps[i].name;
-    $li.appendChild($p)
-    $trapsList.appendChild($li);
-    numExercises++;
-      }
-}
-
-$pullButton.addEventListener('click', renderTraps);
-
-//-----------Render Lats-------------------
-
-function renderLats(){
-  var numExercises = 0;
-  for (var i = Math.floor(Math.random() * exercises.lats.length); numExercises< 2; i++){
-    var $li = document.createElement('li');
-    $li.setAttribute('id', exercises.lats[i].uuid);
-    var $p = document.createElement('p');
-    $p.textContent = exercises.lats[i].name;
-    $li.appendChild($p)
-    $latsList.appendChild($li);
-    numExercises++;
-      }
-}
-
-$pullButton.addEventListener('click', renderLats);
-
-//-----------Render Biceps------------------
-
-function renderBiceps(){
-  var numExercises = 0;
-  for (var i = Math.floor(Math.random() * exercises.biceps.length); numExercises< 2; i++){
-    var $li = document.createElement('li');
-    $li.setAttribute('id', exercises.biceps[i].uuid);
-    var $p = document.createElement('p');
-    $p.textContent = exercises.biceps[i].name;
-    $li.appendChild($p)
-    $bicepsList.appendChild($li);
-    numExercises++;
-      }
-}
-
-$pullButton.addEventListener('click', renderBiceps);
 

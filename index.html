@@ -14,22 +14,20 @@
 
 <body>
   <main>
-    <div class="container" data-view="select-workout">
-      <div class="background-main-page">
-        <div class="login-overlay">
-          <div class="row header justify-align-center">
-            <h1>What are you working out today?</h1>
-          </div>
-          <div class="row justify-align-center">
-            <button id="push-button" data-view="push-workout" class="center-text big-orange-button nav">Push</button>
-          </div>
-          <div class="row justify-align-center">
-            <button id="pull-button" class="center-text big-orange-button nav" data-view="pull-workout">Pull</button>
-          </div>
-          <div class="row justify-align-center">
-            <button id="legs-button" class="big-orange-button nav" data-view="legs-workout">Legs</button>
-          </div>
-        </div>
+    <div class="container background-main-page" data-view="select-workout">
+      <div class="row header justify-align-center">
+        <h1>What are you working out today?</h1>
+      </div>
+      <div class="row justify-align-center">
+        <button id="push" data-view="push-workout" class="center-text big-orange-button nav"
+          data-muscle-group="push">Push</button>
+      </div>
+      <div class="row justify-align-center">
+        <button id="pull" class="center-text big-orange-button nav" data-view="pull-workout"
+          data-muscle-group="pull">Pull</button>
+      </div>
+      <div class="row justify-align-center">
+        <button id="legs" class="big-orange-button nav" data-view="legs-workout" data-muscle-group="legs">Legs</button>
       </div>
     </div>
     <div class="background-push container hidden" data-view="push-workout">
@@ -39,21 +37,21 @@
       <div class="row">
         <div class="column-full">
           <h1>Chest</h1>
-          <ul class="chest-list">
+          <ul class="chest-list" data-list="chest">
           </ul>
         </div>
       </div>
       <div class="row">
         <div class="column-full">
           <h1>Delts</h1>
-          <ul class="delts-list">
+          <ul class="delts-list" data-list="delts">
           </ul>
         </div>
       </div>
       <div class="row">
         <div class="column-full">
           <h1>Triceps</h1>
-          <ul class="triceps-list">
+          <ul class="triceps-list" data-list="triceps">
           </ul>
         </div>
       </div>
@@ -65,21 +63,21 @@
       <div class="row">
         <div class="column-full">
           <h1>Lats</h1>
-          <ul class="lats-list">
+          <ul class="lats-list" data-list="lats">
           </ul>
         </div>
       </div>
       <div class="row">
         <div class="column-full">
           <h1>Traps</h1>
-          <ul class="traps-list">
+          <ul class="traps-list" data-list="traps">
           </ul>
         </div>
       </div>
       <div class="row">
         <div class="column-full">
           <h1>Biceps</h1>
-          <ul class="biceps-list">
+          <ul class="biceps-list" data-list="biceps">
           </ul>
         </div>
       </div>
@@ -91,21 +89,21 @@
       <div class="row">
         <div class="column-full">
           <h1>Quads</h1>
-          <ul class="quads-list">
+          <ul class="quads-list" data-list="quads">
           </ul>
         </div>
       </div>
       <div class="row">
         <div class="column-full">
           <h1>Hamstrings</h1>
-          <ul class="hams-list">
+          <ul class="hams-list" data-list="hams">
           </ul>
         </div>
       </div>
       <div class="row">
         <div class="column-full">
           <h1>Glutes</h1>
-          <ul class="glutes-list">
+          <ul class="glutes-list" data-list="glutes">
           </ul>
         </div>
       </div>
