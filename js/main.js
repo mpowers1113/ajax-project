@@ -56,7 +56,7 @@ $goBack.forEach(item => item.addEventListener('click', goBackHandler));
 
 //----------Render Push Exercises------------------    
 
-function renderExercises(dataMuscleValue, id){
+function renderExercises(id){
  for (var key in exercises[id]){
    var eachExerciseGroup = exercises[id][key];
    var randomIndexArray = [genRandomIndex(eachExerciseGroup), genRandomIndex(eachExerciseGroup)];
@@ -86,9 +86,9 @@ function renderList (randomIndexes, muscleGroup, key){
 }
 
 function getDataMuscleVal(event){
-  var dataValue = event.target.getAttribute('data-muscle-group');
+  // var dataValue = event.target.getAttribute('data-muscle-group');
   var pplID = event.target.getAttribute('id');
-  renderExercises(dataValue, pplID);
+  renderExercises(pplID);
 }
 function genRandomIndex(eachGroup){
   var randomGenIndex = Math.floor(Math.random() * eachGroup.length);
