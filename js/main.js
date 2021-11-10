@@ -65,12 +65,9 @@ function renderExercises(id){
   }   
 
 function findTargetList(key){
-  for (var i = 0; i < $targetList.length; i++){
-    if ($targetList[i].getAttribute('data-list') === key){
-       return $targetList[i];
-     }
-    }
-}
+       return document.querySelector('[data-list="'+key+'"]');
+  }
+    
 
 function renderList (randomIndexes, muscleGroup, key){
   for (var i = 0; i < randomIndexes.length; i++){
@@ -86,7 +83,6 @@ function renderList (randomIndexes, muscleGroup, key){
 }
 
 function getDataMuscleVal(event){
-  // var dataValue = event.target.getAttribute('data-muscle-group');
   var pplID = event.target.getAttribute('id');
   renderExercises(pplID);
 }
