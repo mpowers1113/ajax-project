@@ -17,9 +17,6 @@ var $targetList = document.querySelectorAll('[data-list]');
 var $tagList = document.querySelector('.tag-list');
 var $tags = document.querySelectorAll('.tag');
 var $tagListHeader = document.querySelector('.tag-list-header');
-
-
-
 var $allUl = document.querySelectorAll('ul');
 
 // ----------Toggle New Entries ----------
@@ -72,7 +69,6 @@ function findTargetList(key){
   return document.querySelector('[data-list="'+key+'"]');
 }
     
-
 function renderList (randomIndexes, muscleGroup, key){
   for (var i = 0; i < randomIndexes.length; i++){
     var eachRandomIndex = randomIndexes[i];
@@ -83,7 +79,7 @@ function renderList (randomIndexes, muscleGroup, key){
     $li.appendChild($p)
     var targetUl = findTargetList(key);
     targetUl.appendChild($li);
-}
+  }
 }
 
 function getDataMuscleVal(event){
@@ -100,7 +96,6 @@ $pushButton.addEventListener('click', getDataMuscleVal);
 $legsButton.addEventListener('click', getDataMuscleVal);
 
 $pullButton.addEventListener('click', getDataMuscleVal);
-
 
 //----------render Tag List --------------
 

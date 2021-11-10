@@ -13,6 +13,7 @@
 .container {
   width: 800px;
   margin: auto;
+  scroll-behavior: smooth;
 }
 
 ul {
@@ -20,6 +21,7 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 h1 {
@@ -36,6 +38,7 @@ body {
   max-width: 800px;
   color: whitesmoke;
   padding: 1rem;
+  scroll-behavior: smooth;
 }
 
 .justify-align-center {
