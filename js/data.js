@@ -32,6 +32,7 @@ var exercises = {
   glutes: [],
   abs: [],
   obliques: [],
+  images: [],
 };
 
 window.addEventListener('beforeunload', unloadHandler);
@@ -39,10 +40,10 @@ window.addEventListener('beforeunload', unloadHandler);
 function unloadHandler(event) {
   event.preventDefault();
   var userDataJSON = JSON.stringify(exercises);
-  window.localStorage.setItem('exerciseData', userDataJSON);
+  window.localStorage.setItem('exercises', userDataJSON);
 }
 
-var previousUserDataJSON = window.localStorage.getItem('exerciseData');
+var previousUserDataJSON = window.localStorage.getItem('exercises');
 if (previousUserDataJSON !== null) {
   var parsedPreviousUserData = JSON.parse(previousUserDataJSON);
   exercises = parsedPreviousUserData;

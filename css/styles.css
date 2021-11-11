@@ -37,6 +37,11 @@ html {
   margin: 0;
 }
 
+.space-between{
+  justify-content: space-between;
+  align-items: center;
+}
+
 .auto-margin {
   margin: auto;
 }
@@ -63,6 +68,7 @@ li {
 i {
   cursor: pointer;
   margin-left: 1rem;
+  font-size: small;
 }
 
 .column-80 {
