@@ -186,7 +186,6 @@ function replaceListItemHandler(event){
   var groupReference = exercises[muscleGroup];
   var $replacementLI = generateRandomLI(groupReference);
   var siblingsArray = findSiblings(targetLI);
-  findSimilarID(targetLI, $replacementLI, siblingsArray)
   while (findSimilarID(targetLI, $replacementLI, siblingsArray)){
     $replacementLI = generateRandomLI(groupReference);
   }
