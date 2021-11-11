@@ -56,6 +56,10 @@ li {
 
 }
 
+.no-padding {
+  padding: 0;
+}
+
 i {
   cursor: pointer;
   margin-left: 1rem;
