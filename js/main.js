@@ -137,7 +137,7 @@ $tags.forEach(tag => tag.addEventListener('click', renderTagList));
 function findSiblings(targetElement){
   var siblingsArray = [];
   if (!targetElement.parentNode){
-    return siblings;
+    return siblingsArray;
   }
   var sibling = targetElement.parentNode.firstChild;
   while (sibling){
