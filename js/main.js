@@ -18,6 +18,7 @@ var $tagList = document.querySelector('.tag-list');
 var $tags = document.querySelectorAll('.tag');
 var $tagListHeader = document.querySelector('.tag-list-header');
 var $allUl = document.querySelectorAll('ul');
+var $body = document.querySelector('body');
 
 // ----------Toggle New Entries ----------
 
@@ -70,14 +71,22 @@ function findTargetList(key){
 }
     
 function renderList (randomIndexes, muscleGroup, key){
+  var targetUl = findTargetList(key);
+  removeChilds(targetUl);
   for (var i = 0; i < randomIndexes.length; i++){
     var eachRandomIndex = randomIndexes[i];
     var $li = document.createElement('li');
-    $li.setAttribute('id', muscleGroup[eachRandomIndex].uuid);
+    $li.setAttribute('id', muscleGroup[eachRandomIndex].id);
     var $p = document.createElement('p');
     $p.textContent = muscleGroup[eachRandomIndex].name;
+    var $div = document.createElement('div');
+    $div.className = 'row justify-align-center no-margin no-padding';
+    var $newP = document.createElement('p');
+    $newP.textContent = 'double-tap to change';
+    $newP.className ="orange-text no-margin";
+    $div.appendChild($newP);
     $li.appendChild($p)
-    var targetUl = findTargetList(key);
+    $li.appendChild($div);
     targetUl.appendChild($li);
   }
 }
@@ -105,7 +114,7 @@ function renderTagList(event){
   for (var i = 0; i < exercises[muscleGroup].length; i++){
     var eachExercise = exercises[muscleGroup][i];
     var $li = document.createElement('li');
-    $li.setAttribute('id', eachExercise.uuid);
+    $li.setAttribute('id', eachExercise.id);
     var $p = document.createElement('p');
     $p.textContent = eachExercise.name;
     $li.appendChild($p);
@@ -121,6 +130,69 @@ function removeChilds (parent){
 }
 
 $tags.forEach(tag => tag.addEventListener('click', renderTagList));
+
+
+//-----------Double-Click Remove/Replace Function--------
+
+function findSiblings(targetElement){
+  var siblingsArray = [];
+  if (!targetElement.parentNode){
+    return siblingsArray;
+  }
+  var sibling = targetElement.parentNode.firstChild;
+  while (sibling){
+    if(sibling.nodeType === 1 && sibling !== targetElement){
+      siblingsArray.push(sibling);
+    }
+    sibling = sibling.nextSibling;
+  }
+  return siblingsArray;
+}
+
+function generateRandomLI (muscleGroup){
+  var randomIndex = genRandomIndex(muscleGroup);
+  var $li = document.createElement('li');
+  $li.setAttribute('id', muscleGroup[randomIndex].id);
+  var $p = document.createElement('p');
+  $p.textContent = muscleGroup[randomIndex].name;
+  var $div = document.createElement('div');
+  $div.className = 'row justify-align-center no-margin no-padding';
+  var $newP = document.createElement('p');
+  $newP.textContent = 'double-tap to change';
+  $newP.className ="orange-text no-margin";
+  $div.appendChild($newP);
+  $li.appendChild($p)
+  $li.appendChild($div);
+  return $li
+}
+
+function findSimilarID (currentLI, replacementLI, arrayOfSiblings){
+  var currentID = currentLI.getAttribute('id');
+  var replacementID = replacementLI.getAttribute('id');
+  for (var i = 0; i < arrayOfSiblings.length; i++){
+    var eachSibling = arrayOfSiblings[i];
+    var eachID = eachSibling.getAttribute('id');
+    if(Number(eachID) === Number(currentID) || Number(replacementID) === Number(eachID) || Number(currentID) === Number(replacementID)){
+      return true;
+    }
+  return false;
+  }
+}
+
+function replaceListItemHandler(event){
+  var parentUL = event.target.closest('ul');
+  var muscleGroup = parentUL.getAttribute('data-list')
+  var targetLI = event.target.closest('li');
+  var groupReference = exercises[muscleGroup];
+  var $replacementLI = generateRandomLI(groupReference);
+  var siblingsArray = findSiblings(targetLI);
+  while (findSimilarID(targetLI, $replacementLI, siblingsArray)){
+    $replacementLI = generateRandomLI(groupReference);
+  }
+  parentUL.replaceChild($replacementLI, targetLI);
+}
+
+$allUl.forEach(ul =>ul.addEventListener('dblclick', replaceListItemHandler));
 
 //-----------Data Fetching ----------------
 
