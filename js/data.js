@@ -34,3 +34,17 @@ var exercises = {
   obliques: [],
   images: [],
 };
+
+window.addEventListener('beforeunload', unloadHandler);
+
+function unloadHandler(event) {
+  event.preventDefault();
+  var userDataJSON = JSON.stringify(exercises);
+  window.localStorage.setItem('exercises', userDataJSON);
+}
+
+var previousUserDataJSON = window.localStorage.getItem('exercises');
+if (previousUserDataJSON !== null) {
+  var parsedPreviousUserData = JSON.parse(previousUserDataJSON);
+  exercises = parsedPreviousUserData;
+}

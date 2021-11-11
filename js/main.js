@@ -288,9 +288,9 @@ window.addEventListener('load', fetchExercises);
 
 
 function fetchExercises() {
-  // if (exercises.delts.length !== 0){
-  //   return;
-  // }
+  if (exercises.delts.length !== 0){
+    return;
+  }
   const xhr = new XMLHttpRequest();
 
   xhr.open("GET", "https://wger.de/api/v2/exercise/?language=2&limit=300");
