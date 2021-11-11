@@ -37,6 +37,11 @@ html {
   margin: 0;
 }
 
+.space-between{
+  justify-content: space-between;
+  align-items: center;
+}
+
 .auto-margin {
   margin: auto;
 }

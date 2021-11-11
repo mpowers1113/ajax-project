@@ -20,6 +20,7 @@ var $tagListHeader = document.querySelector('.tag-list-header');
 var $allUl = document.querySelectorAll('ul');
 var $body = document.querySelector('body');
 var $addIcons = document.querySelectorAll('.fa-plus');
+var $deleteIcons = document.querySelectorAll('.fa-minus-circle');
 
 // ----------Toggle New Entries ----------
 
@@ -63,6 +64,9 @@ function renderExercises(id){
  for (var key in exercises[id]){
    var eachExerciseGroup = exercises[id][key];
    var randomIndexArray = [genRandomIndex(eachExerciseGroup), genRandomIndex(eachExerciseGroup)];
+   while (randomIndexArray[0] === randomIndexArray[1]){
+     randomIndexArray[0] = genRandomIndex(eachExerciseGroup);
+   }
    renderList(randomIndexArray, eachExerciseGroup, key);
     }
   }   
@@ -79,15 +83,27 @@ function renderList (randomIndexes, muscleGroup, key){
     var $li = document.createElement('li');
     $li.setAttribute('id', muscleGroup[eachRandomIndex].id);
     var $p = document.createElement('p');
+    var $firstDiv = document.createElement('div');
+    $firstDiv.className = 'row space-between no-margin no-padding';
+    $firstDiv.appendChild($p)
+    var $deleteIcon = document.createElement('i');
+    $deleteIcon.className = 'fas fa-minus-circle fa-2x';
+    $firstDiv.appendChild($deleteIcon);
     $p.textContent = muscleGroup[eachRandomIndex].name;
     var $div = document.createElement('div');
     $div.className = 'row justify-align-center no-margin no-padding';
     var $newP = document.createElement('p');
     $newP.textContent = 'double-tap to change';
     $newP.className ="orange-text no-margin";
+    var $thirdDiv = document.createElement('div');
+    $thirdDiv.className = 'row description hidden';
+    var $thirdP = document.createElement('p');
+    $thirdP.textContent = muscleGroup[eachRandomIndex].description.replace(/<\/?[^>]+(>|$)/g, "");
+    $thirdDiv.appendChild($thirdP);
     $div.appendChild($newP);
-    $li.appendChild($p)
+    $li.appendChild($firstDiv)
     $li.appendChild($div);
+    $li.appendChild($thirdDiv);
     targetUl.appendChild($li);
   }
 }
@@ -156,14 +172,26 @@ function generateRandomLI (muscleGroup){
   $li.setAttribute('id', muscleGroup[randomIndex].id);
   var $p = document.createElement('p');
   $p.textContent = muscleGroup[randomIndex].name;
+  var $firstDiv = document.createElement('div');
+  $firstDiv.className = 'row space-between no-margin no-padding';
+  $firstDiv.appendChild($p)
+  var $deleteIcon = document.createElement('i');
+  $deleteIcon.className = 'fas fa-minus-circle fa-2x';
+  $firstDiv.appendChild($deleteIcon);
   var $div = document.createElement('div');
   $div.className = 'row justify-align-center no-margin no-padding';
   var $newP = document.createElement('p');
   $newP.textContent = 'double-tap to change';
   $newP.className ="orange-text no-margin";
+  var $thirdDiv = document.createElement('div');
+  $thirdDiv.className = 'row description hidden';
+  var $thirdP = document.createElement('p');
+  $thirdP.textContent = muscleGroup[randomIndex].description.replace(/<\/?[^>]+(>|$)/g, "");
+  $thirdDiv.appendChild($thirdP)
   $div.appendChild($newP);
-  $li.appendChild($p)
+  $li.appendChild($firstDiv)
   $li.appendChild($div);
+  $li.appendChild($thirdDiv);
   return $li
 }
 
@@ -229,15 +257,40 @@ function addExerciseHandler(event){
 
 $addIcons.forEach(icon=> icon.addEventListener('click', addExerciseHandler));
 
+//-----------Delete Exercise---------------------
+
+function deleteItemHandler(event){
+ if (event.target.classList.contains('fa-minus-circle')){
+   var targetLI = event.target.closest('li');
+   targetLI.remove();
+ }
+}
+
+$allUl.forEach(icon => icon.addEventListener('click', deleteItemHandler));
+
+//-----------Toggle Description-------------
+
+function toggleDescriptionHandler(event){
+  var siblings = findSiblings(event.target);
+  for (var i = 0; i < siblings.length; i++){
+    var eachSibling = siblings[i];
+    if(eachSibling.classList.contains('description')){
+      eachSibling.classList.toggle('hidden');
+    }
+  }
+}
+
+$allUl.forEach(item => item.addEventListener('click', toggleDescriptionHandler));
+
 //-----------Data Fetching ----------------
 
 window.addEventListener('load', fetchExercises);
 
 
 function fetchExercises() {
-  if (exercises.delts.length !== 0){
-    return;
-  }
+  // if (exercises.delts.length !== 0){
+  //   return;
+  // }
   const xhr = new XMLHttpRequest();
 
   xhr.open("GET", "https://wger.de/api/v2/exercise/?language=2&limit=300");
@@ -247,10 +300,8 @@ function fetchExercises() {
     data = xhr.response.results;
     for (var i = 0; i < data.length; i++){
       var eachItem = data[i];
-      if (eachItem){
-        exercises.all.push(eachItem)
-      }
-      else if (eachItem.muscles.includes(1)){
+    
+      if (eachItem.muscles.includes(1)){
         exercises.pull.biceps.push(eachItem);
         exercises.biceps.push(eachItem);
       }
@@ -282,10 +333,6 @@ function fetchExercises() {
         exercises.legs.hams.push(eachItem);
         exercises.hams.push(eachItem);
       }
-      else if (eachItem.muscles.includes(14)){
-        exercises.core.obliques.push(eachItem);
-        exercises.obliques.push(eachItem);
-      }
       else if (eachItem.muscles.includes(9)){
         exercises.pull.traps.push(eachItem);
         exercises.traps.push(eachItem);
@@ -298,4 +345,3 @@ function fetchExercises() {
   });
   xhr.send()
 }
-
