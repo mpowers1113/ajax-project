@@ -345,3 +345,25 @@ function fetchExercises() {
   });
   xhr.send()
 }
+
+window.addEventListener('load', fetchExercises);
+
+
+function fetchExercises() {
+  if (exercises.images.length !== 0){
+    return;
+  }
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("GET", "https://wger.de/api/v2/exerciseimage/?language=2&limit=300");
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function(){
+    console.log(xhr.status);
+    data = xhr.response.results;
+    for (var i = 0; i < data.length; i++){
+      var eachItem = data[i];
+      exercises.images.push(eachItem);
+    }
+  });
+  xhr.send()
+}
