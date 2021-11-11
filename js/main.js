@@ -19,6 +19,7 @@ var $tags = document.querySelectorAll('.tag');
 var $tagListHeader = document.querySelector('.tag-list-header');
 var $allUl = document.querySelectorAll('ul');
 var $body = document.querySelector('body');
+var $addIcons = document.querySelectorAll('.fa-plus');
 
 // ----------Toggle New Entries ----------
 
@@ -179,6 +180,18 @@ function findSimilarID (currentLI, replacementLI, arrayOfSiblings){
   }
 }
 
+function findSimilarIDforAdditionalItem(additionalLI, childNodes){
+  var additionalID = additionalLI.getAttribute('id');
+  for (var i = 0; i < childNodes.length; i++){
+    var eachChild = childNodes[i];
+    var eachID = eachChild.getAttribute('id');
+    if (Number(eachID)===Number(additionalID)){
+      return true;
+    }
+  }
+  return false;
+}
+
 function replaceListItemHandler(event){
   var parentUL = event.target.closest('ul');
   var muscleGroup = parentUL.getAttribute('data-list')
@@ -193,6 +206,28 @@ function replaceListItemHandler(event){
 }
 
 $allUl.forEach(ul =>ul.addEventListener('dblclick', replaceListItemHandler));
+
+//----Add Excercise-----------------------
+
+function addExerciseHandler(event){
+
+  var nearestH1 = event.target.closest('h1');
+  var muscleGroup = nearestH1.innerText.toLowerCase().split(' ').join('');
+  console.log(nearestH1, muscleGroup)
+  var targetUL = document.querySelector('[data-list="'+muscleGroup+'"]');
+  var targetULChildren = targetUL.childNodes;
+  console.log(targetUL, 'childnodes', targetULChildren);
+
+  var additionalLI = generateRandomLI(exercises[muscleGroup]);
+  while (findSimilarIDforAdditionalItem(additionalLI, targetULChildren)){
+    additionalLI = generateRandomLI(exercises[muscleGroup]);
+  }
+  targetUL.appendChild(additionalLI);
+
+
+}
+
+$addIcons.forEach(icon=> icon.addEventListener('click', addExerciseHandler));
 
 //-----------Data Fetching ----------------
 

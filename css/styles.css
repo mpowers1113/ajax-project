@@ -63,6 +63,7 @@ li {
 i {
   cursor: pointer;
   margin-left: 1rem;
+  font-size: small;
 }
 
 .column-80 {
