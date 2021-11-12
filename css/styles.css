@@ -18,6 +18,36 @@ html {
   height: 100%;
 }
 
+.overlay {
+  color: var(--dark-grey);
+  height: inherit;
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.overlay p {
+  color: var(--dark-grey);
+}
+
+.overlay i {
+  color: var(--dark-grey);
+}
+
+.overlay::before {
+  content: "DONE!";
+  color: var(--orange-color);
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+}
+
 .select-workout {
   color: var(--orange-color);
   width: 375px;
@@ -35,6 +65,10 @@ html {
 
 .no-margin {
   margin: 0;
+}
+
+.m-1 {
+  margin-right: 1rem;
 }
 
 .space-between{
@@ -125,4 +159,12 @@ i {
   height: 100vh;
   background-attachment: fixed;
   background-position: center;
+}
+
+.column-80{
+  flex-basis: 90%;
+}
+
+.column-20 {
+  flex-basis: 20%;
 }

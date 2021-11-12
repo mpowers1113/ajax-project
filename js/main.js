@@ -1,3 +1,5 @@
+
+
 var $pushButton = document.querySelector('#push');
 var $pullButton = document.querySelector('#pull');
 var $legsButton = document.querySelector('#legs');
@@ -84,11 +86,20 @@ function renderList (randomIndexes, muscleGroup, key){
     $li.setAttribute('id', muscleGroup[eachRandomIndex].id);
     var $p = document.createElement('p');
     var $firstDiv = document.createElement('div');
+    var $column80 = document.createElement('div');
+    $column80.className = 'row column-80 space-between no-margin no-padding';
+    $firstDiv.appendChild($column80);
+    var $column20 = document.createElement('div');
+    $column20.className = 'rowspace-between no-margin no-padding justify-align-center';
+    var $completeIcon = document.createElement('i');
+    $completeIcon.className = 'fas fa-check fa-2x orange-color m-1';
+    $column20.appendChild($completeIcon);
+    $firstDiv.appendChild($column20);
     $firstDiv.className = 'row space-between no-margin no-padding';
-    $firstDiv.appendChild($p)
+    $column80.appendChild($p)
     var $deleteIcon = document.createElement('i');
     $deleteIcon.className = 'fas fa-minus-circle fa-2x';
-    $firstDiv.appendChild($deleteIcon);
+    $column80.appendChild($deleteIcon);
     $p.textContent = muscleGroup[eachRandomIndex].name;
     var $div = document.createElement('div');
     $div.className = 'row justify-align-center no-margin no-padding';
@@ -173,11 +184,21 @@ function generateRandomLI (muscleGroup){
   var $p = document.createElement('p');
   $p.textContent = muscleGroup[randomIndex].name;
   var $firstDiv = document.createElement('div');
+  var $column80 = document.createElement('div');
+  $column80.className = 'row column-80 space-between no-margin no-padding';
+  $firstDiv.appendChild($column80);
+  var $column20 = document.createElement('div');
+  $column20.className = 'rowspace-between no-margin no-padding justify-align-center';
+  var $completeIcon = document.createElement('i');
+  $completeIcon.className = 'fas fa-check fa-2x orange-color m-1';
+  $column20.appendChild($completeIcon);
+  $firstDiv.appendChild($column20);
   $firstDiv.className = 'row space-between no-margin no-padding';
-  $firstDiv.appendChild($p)
+  $column80.appendChild($p)
+  $firstDiv.className = 'row space-between no-margin no-padding';
   var $deleteIcon = document.createElement('i');
   $deleteIcon.className = 'fas fa-minus-circle fa-2x';
-  $firstDiv.appendChild($deleteIcon);
+  $column80.appendChild($deleteIcon);
   var $div = document.createElement('div');
   $div.className = 'row justify-align-center no-margin no-padding';
   var $newP = document.createElement('p');
@@ -267,6 +288,17 @@ function deleteItemHandler(event){
 }
 
 $allUl.forEach(icon => icon.addEventListener('click', deleteItemHandler));
+
+//-----------Mark Complete------------------
+
+function markCompleteHandler(event){
+  if (event.target.classList.contains('fa-check')){
+    var targetLI = event.target.closest('li');
+    targetLI.classList.toggle('overlay');
+  }
+}
+
+$allUl.forEach(icon => icon.addEventListener('click', markCompleteHandler));
 
 //-----------Toggle Description-------------
 
