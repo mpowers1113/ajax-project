@@ -33,6 +33,10 @@ var exercises = {
   abs: [],
   obliques: [],
   images: [],
+
+  // completedWorkouts: [{date: 2038, type: legs, quads: [], hams: [], glutes: [], exercises: 4, allExercises: []}]
+  completedWorkouts: [],
+
 };
 
 window.addEventListener('beforeunload', unloadHandler);
