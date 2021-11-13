@@ -32,6 +32,15 @@ body {
   background-color: #010101;
 }
 
+span {
+  border: 1px solid var(--orange-color);
+  background-color: var(--dark-grey);
+  padding: .75rem;
+  margin: .25rem 0;
+  border-radius: 5px;
+  color: whitesmoke;
+}
+
 .row {
   display: flex;
   max-width: 800px;

@@ -48,11 +48,6 @@ h2 {
   justify-content: space-around;
 }
 
-.list-of-exercises span{
-  padding-left: 1rem;
-  padding-bottom: 1rem;
-}
-
 .overlay::before {
   content: "DONE!";
   color: var(--orange-color);
