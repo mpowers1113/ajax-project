@@ -52,7 +52,7 @@ function goBackHandler(){
     if ($dataViews[i].nodeName !== 'BUTTON'){
       var viewName = $dataViews[i].getAttribute('data-view');
     }
-   if (viewName !== 'select-workout'){
+   if (viewName !== 'select-workout' && $dataViews[i].nodeName!=='BUTTON' && $dataViews[i].nodeName!=='I'){
      $dataViews[i].classList.add('hidden');
    } else {
      $dataViews[i].classList.remove('hidden');
@@ -317,6 +317,7 @@ $allUl.forEach(icon => icon.addEventListener('click', deleteItemHandler));
 //-----------Mark Complete------------------
 
 function markCompleteHandler(event){
+  
   var exerciseComplete = {
     muscleGroup: [],
     exerciseID: [],
@@ -324,7 +325,7 @@ function markCompleteHandler(event){
     date: currentDate
   };
   if (event.target.classList.contains('fa-check')){
-    debugger;
+  
     var targetLI = event.target.closest('li');
     var parentUL = targetLI.parentNode;
     var muscleGroup = parentUL.getAttribute('data-list');
@@ -337,66 +338,78 @@ function markCompleteHandler(event){
     console.log(exerciseComplete);
     targetLI.classList.toggle('overlay');
     for (var i = 0; i < exercises.completedWorkouts.length; i++){
-      var eachCompleted = exercises.completedWorkouts[i];
-      if (eachCompleted.date === currentDate){
-        eachCompleted.muscleGroup.push(muscleGroup);
-        eachCompleted.exerciseID.push(exerciseID);
-        eachCompleted.exerciseName.push(exerciseName);
-      } else {
-        exercises.completedWorkouts.push([exerciseComplete]);
-        break;
-      }
-
+      var eachComplete = exercises.completedWorkouts[i];
+      if (eachComplete.date === currentDate)
+      eachComplete.muscleGroup.push(muscleGroup);
+      eachComplete.exerciseID.push(exerciseID);
+      eachComplete.exerciseName.push(exerciseName)
+      return;
     }
-    // if (exercises.completedWorkouts[currentDate]){
-
-    // } else {
-    //   exercises.completedWorkouts = [exerciseComplete];
-
-
-    // }
+    exercises.completedWorkouts.push(exerciseComplete);
+    }
   }
-}
+
 
 $allUl.forEach(icon => icon.addEventListener('click', markCompleteHandler));
 
 //----render Completed Workouts-------------
 
-function renderCompletedWorkouts(event){
-
-
-
+function returnCompletedWorkoutsLi(){
   for (var i = 0; i < exercises.completedWorkouts.length; i++){
-    debugger;
     var eachCompleted = exercises.completedWorkouts[i];
-    var $dateH1 = document.createElement('h1');
+    var $dateP = document.createElement('p');
     var $li = document.createElement('li');
     $li.className = 'completed-workout-ul'
     $li.setAttribute('id', eachCompleted.date);
-    $dateH1.textContent = eachCompleted.date;
-    $li.appendChild($dateH1);
+    $dateP.textContent = eachCompleted.date;
+    $dateP.className = 'no-margin orange-text';
+    $li.appendChild($dateP);
     var $firstDiv = document.createElement('div');
     $firstDiv.className = 'row space-between no-margin';
     $li.appendChild($firstDiv);
     var $h3 = document.createElement('h3');
-    $h3.textContent = eachCompleted.muscleGroup
+    if(eachCompleted.muscleGroup.includes('chest') || eachCompleted.muscleGroup.includes('delts') || eachCompleted.muscleGroup.includes('triceps')){
+      $h3.textContent = 'Push'
+    } 
+    if (eachCompleted.muscleGroup.includes('hams') || eachCompleted.muscleGroup.includes('quads') || eachCompleted.muscleGroup.includes('glutes')){
+      $h3.textContent = 'Legs'
+    } 
+    if (eachCompleted.muscleGroup.includes('lats') || eachCompleted.muscleGroup.includes('traps') || eachCompleted.muscleGroup.includes('biceps')){
+      $h3.textContent = 'Pull'
+    } 
+    if ($h3.textContent === 'Pull' && eachCompleted.muscleGroup.includes('chest') || $h3.textContent === 'Legs' && eachCompleted.muscleGroup.includes('chest') || $h3.textContent === 'Legs' && eachCompleted.muscleGroup.includes('delts') || $h3.textContent==='Pull' && eachCompleted.muscleGroup.includes('delts')){
+      $h3.textContent = 'Mixed';
+    }
     var $p = document.createElement('p');
     $p.className = "no-margin orange-text";
-    $p.textContent = "Exercises:" + ' ' + exercises.completedWorkouts.length;
+    $p.textContent = "Exercises:" + ' ' + eachCompleted.exerciseName.length;
+    $firstDiv.appendChild($dateP);
     $firstDiv.appendChild($h3);
     $firstDiv.appendChild($p);
-    $completedWorkoutsUl.appendChild($li);
-    // var $secondDiv = document.createElement('div');
-    // $secondDiv.className = 'row flex-wrap space-around list-of-exercises';
-    // for (var j = 0; j< completedKeys.exerciseName.length; j++){
-    //   var eachExercises = completedKeys.exerciseName[i];
-    //   var $span = document.createElement('span');
-    //   $span.textContent = eachExercises;
-    //   $secondDiv.appendChild($span);
-    // }
-    // $li.appendChild($secondDiv);
+    var $secondDiv = document.createElement('div');
+    $secondDiv.className = 'row flex-wrap space-around list-of-exercises';
+    for (var j = 0; j< eachCompleted.exerciseName.length; j++){
+      var eachExercises = eachCompleted.exerciseName[j];
+      var $span = document.createElement('span');
+      $span.textContent = eachExercises;
+      $secondDiv.appendChild($span);
+    }
+    $li.appendChild($secondDiv);
+    var $thirdDiv = document.createElement('div')
+    $thirdDiv.className = 'row justify-align-center orange-text no-margin no-padding';
+    var $lastP = document.createElement('p');
+    $lastP.textContent = 'double-click to repeat';
+    $thirdDiv.appendChild($lastP);
+    $li.appendChild($thirdDiv);
+    return $li;
   }
 }  
+
+function renderCompletedWorkouts(){
+  removeChilds($completedWorkoutsUl)
+  $completedWorkoutsUl.appendChild(returnCompletedWorkoutsLi());
+}
+
 
 $completedWorkouts.addEventListener('click', renderCompletedWorkouts);
 
@@ -404,14 +417,6 @@ $completedWorkouts.addEventListener('click', renderCompletedWorkouts);
 //-----------Toggle Description-------------
 
 function toggleDescriptionHandler(event){
-  // var siblings = findSiblings(event.target);
-  // for (var i = 0; i < siblings.length; i++){
-  //   var eachSibling = siblings[i];
-  //   if(eachSibling.classList.contains('description')){
-  //     eachSibling.classList.toggle('hidden');
-  //   }
-  // }
-
   if (event.target.classList.contains('fa-angle-down')){
     var targetLI = event.target.closest('li');
     var lastChild = targetLI.lastChild;
