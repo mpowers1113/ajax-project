@@ -1,5 +1,3 @@
-
-
 var $pushButton = document.querySelector('#push');
 var $pullButton = document.querySelector('#pull');
 var $legsButton = document.querySelector('#legs');
