@@ -136,9 +136,7 @@ function genRandomIndex(eachGroup){
 }
 
 $pushButton.addEventListener('click', getDataMuscleVal);
-
 $legsButton.addEventListener('click', getDataMuscleVal);
-
 $pullButton.addEventListener('click', getDataMuscleVal);
 
 //----------render Tag List --------------
@@ -285,18 +283,13 @@ function addExerciseHandler(event){
 
   var nearestH1 = event.target.closest('h1');
   var muscleGroup = nearestH1.innerText.toLowerCase().split(' ').join('');
-  console.log(nearestH1, muscleGroup)
   var targetUL = document.querySelector('[data-list="'+muscleGroup+'"]');
   var targetULChildren = targetUL.childNodes;
-  console.log(targetUL, 'childnodes', targetULChildren);
-
   var additionalLI = generateRandomLI(exercises[muscleGroup]);
   while (findSimilarIDforAdditionalItem(additionalLI, targetULChildren)){
     additionalLI = generateRandomLI(exercises[muscleGroup]);
   }
   targetUL.appendChild(additionalLI);
-
-
 }
 
 $addIcons.forEach(icon=> icon.addEventListener('click', addExerciseHandler));
@@ -315,7 +308,6 @@ $allUl.forEach(icon => icon.addEventListener('click', deleteItemHandler));
 //-----------Mark Complete------------------
 
 function markCompleteHandler(event){
-  
   var exerciseComplete = {
     muscleGroup: [],
     exerciseID: [],
@@ -323,17 +315,14 @@ function markCompleteHandler(event){
     date: currentDate
   };
   if (event.target.classList.contains('fa-check')){
-  
     var targetLI = event.target.closest('li');
     var parentUL = targetLI.parentNode;
     var muscleGroup = parentUL.getAttribute('data-list');
     var exerciseID = targetLI.getAttribute('id');
     var exerciseName = targetLI.firstChild.getAttribute('data-exercise-name')
-    console.log(muscleGroup, exerciseID, currentDate, typeof currentDate);
     exerciseComplete.muscleGroup = [muscleGroup];
     exerciseComplete.exerciseID = [exerciseID];
     exerciseComplete.exerciseName = [exerciseName]
-    console.log(exerciseComplete);
     targetLI.classList.toggle('overlay');
     for (var i = 0; i < exercises.completedWorkouts.length; i++){
       var eachComplete = exercises.completedWorkouts[i];
@@ -393,12 +382,6 @@ function returnCompletedWorkoutsLi(){
       $secondDiv.appendChild($span);
     }
     $li.appendChild($secondDiv);
-    var $thirdDiv = document.createElement('div')
-    $thirdDiv.className = 'row justify-align-center orange-text no-margin no-padding';
-    var $lastP = document.createElement('p');
-    $lastP.textContent = 'double-click to repeat';
-    $thirdDiv.appendChild($lastP);
-    $li.appendChild($thirdDiv);
     return $li;
   }
 }  
@@ -427,7 +410,6 @@ $allUl.forEach(item => item.addEventListener('click', toggleDescriptionHandler))
 //-----------Data Fetching ----------------
 
 window.addEventListener('load', fetchExercises);
-
 
 function fetchExercises() {
   if (exercises.delts.length !== 0){
