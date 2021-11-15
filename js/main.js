@@ -285,13 +285,12 @@ function addExerciseHandler(event){
   var muscleGroup = nearestH1.innerText.toLowerCase().split(' ').join('');
   var targetUL = document.querySelector('[data-list="'+muscleGroup+'"]');
   var targetULChildren = targetUL.childNodes;
-  console.log(targetULChildren)
   var exerciseGroupLength = exercises[muscleGroup].length;
-  if (targetULChildren.length===exerciseGroupLength){
+  if (targetULChildren.length === exerciseGroupLength){
     return;
   }
   var additionalLI = generateRandomLI(exercises[muscleGroup]);
-  while (findSimilarIDforAdditionalItem(additionalLI, targetULChildren)&& targetULChildren.length!==exerciseGroupLength && targetULChildren.includes(additionalLI)){
+  while (findSimilarIDforAdditionalItem(additionalLI, targetULChildren)&& targetULChildren.length !== exerciseGroupLength && targetULChildren.includes(additionalLI)){
     additionalLI = generateRandomLI(exercises[muscleGroup]);
   }
   targetUL.appendChild(additionalLI);
@@ -329,7 +328,6 @@ function markCompleteHandler(event){
     exerciseComplete.exerciseID = [exerciseID];
     exerciseComplete.exerciseName = [exerciseName]
     targetLI.classList.toggle('overlay');
-    var dateMapComplete = exercises.completedWorkouts.map(e => Number(e.date.replace(/\D/g,'')));
     var noDoubleEntry = 0;
     for (var i = 0; i < exercises.completedWorkouts.length; i++){
       var eachComplete = exercises.completedWorkouts[i];
