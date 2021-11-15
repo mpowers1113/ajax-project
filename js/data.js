@@ -33,6 +33,8 @@ var exercises = {
   abs: [],
   obliques: [],
   images: [],
+  completedWorkouts: [],
+
 };
 
 window.addEventListener('beforeunload', unloadHandler);

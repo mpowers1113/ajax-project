@@ -15,6 +15,10 @@
 <body>
   <main>
     <div class="container background-main-page" data-view="select-workout">
+      <div class="row no-margin no-padding justify-align-center orange-text">
+        <h2>View Completed Workouts</h2>
+        <i data-view="completed-workouts" class="fas fa-arrow-right fa-2x completed-workouts nav"></i>
+      </div>
       <div class="row header justify-align-center">
         <h1>What are you working out today?</h1>
       </div>
@@ -134,6 +138,18 @@
           <ul class="glutes-list" data-list="glutes">
           </ul>
         </div>
+      </div>
+    </div>
+    <div class="container background-main-page hidden" data-view="completed-workouts">
+      <div class="row header">
+        <i class="fas fa-angle-double-left fa-2x back"></i>
+      </div>
+      <div class="row center-text justify-align-center">
+        <h1>Completed Workouts</h1>
+      </div>
+      <div class="row justify-align-center">
+        <ul class="completed-workouts-ul">
+        </ul>
       </div>
     </div>
   </main>
