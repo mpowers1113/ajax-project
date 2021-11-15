@@ -129,6 +129,7 @@ function renderList (randomIndexes, muscleGroup, key){
 function getDataMuscleVal(event){
   var pplID = event.target.getAttribute('id');
   renderExercises(pplID);
+  
 }
 function genRandomIndex(eachGroup){
   var randomGenIndex = Math.floor(Math.random() * eachGroup.length);
@@ -328,17 +329,25 @@ function markCompleteHandler(event){
     exerciseComplete.exerciseID = [exerciseID];
     exerciseComplete.exerciseName = [exerciseName]
     targetLI.classList.toggle('overlay');
+    var dateMapComplete = exercises.completedWorkouts.map(e => Number(e.date.replace(/\D/g,'')));
+    var noDoubleEntry = 0;
     for (var i = 0; i < exercises.completedWorkouts.length; i++){
       var eachComplete = exercises.completedWorkouts[i];
-      if (eachComplete.date === currentDate)
+      var eachCompleteDate = Number(eachComplete.date.replace(/\D/g,''))
+      var currentDateToNumber = Number(currentDate.replace(/\D/g, ''));
+      if (eachCompleteDate === currentDateToNumber && noDoubleEntry<1){
       eachComplete.muscleGroup.push(muscleGroup);
       eachComplete.exerciseID.push(exerciseID);
-      eachComplete.exerciseName.push(exerciseName)
+      eachComplete.exerciseName.push(exerciseName);
+      noDoubleEntry++
       return;
     }
-    exercises.completedWorkouts.push(exerciseComplete);
-    }
   }
+  if(noDoubleEntry === 0){
+    exercises.completedWorkouts.push(exerciseComplete);
+  }
+}
+}
 
 
 $allUl.forEach(icon => icon.addEventListener('click', markCompleteHandler));
@@ -346,6 +355,7 @@ $allUl.forEach(icon => icon.addEventListener('click', markCompleteHandler));
 //----render Completed Workouts-------------
 
 function returnCompletedWorkoutsLi(){
+  removeChilds($completedWorkoutsUl)
   for (var i = 0; i < exercises.completedWorkouts.length; i++){
     var eachCompleted = exercises.completedWorkouts[i];
     var $dateP = document.createElement('p');
@@ -386,7 +396,7 @@ function returnCompletedWorkoutsLi(){
       $secondDiv.appendChild($span);
     }
     $li.appendChild($secondDiv);
-    return $li;
+    $completedWorkoutsUl.appendChild($li);
   }
 }  
 
@@ -396,7 +406,7 @@ function renderCompletedWorkouts(){
 }
 
 
-$completedWorkouts.addEventListener('click', renderCompletedWorkouts);
+$completedWorkouts.addEventListener('click', returnCompletedWorkoutsLi);
 
 
 //-----------Toggle Description-------------
