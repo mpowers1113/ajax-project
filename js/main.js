@@ -280,13 +280,17 @@ $allUl.forEach(ul =>ul.addEventListener('dblclick', replaceListItemHandler));
 //----Add Excercise-----------------------
 
 function addExerciseHandler(event){
-
   var nearestH1 = event.target.closest('h1');
   var muscleGroup = nearestH1.innerText.toLowerCase().split(' ').join('');
   var targetUL = document.querySelector('[data-list="'+muscleGroup+'"]');
   var targetULChildren = targetUL.childNodes;
+  console.log(targetULChildren)
+  var exerciseGroupLength = exercises[muscleGroup].length;
+  if (targetULChildren.length===exerciseGroupLength){
+    return;
+  }
   var additionalLI = generateRandomLI(exercises[muscleGroup]);
-  while (findSimilarIDforAdditionalItem(additionalLI, targetULChildren)){
+  while (findSimilarIDforAdditionalItem(additionalLI, targetULChildren)&& targetULChildren.length!==exerciseGroupLength && targetULChildren.includes(additionalLI)){
     additionalLI = generateRandomLI(exercises[muscleGroup]);
   }
   targetUL.appendChild(additionalLI);
