@@ -76,7 +76,7 @@ span {
 }
 
 .background-push {
-  background-image: url(./images/pushbackground.png);
+  background-image: url(images/pushbackground.png);
   background-position: center;
   background-size:cover;
   background-repeat: no-repeat;
@@ -86,7 +86,7 @@ span {
 }
 
 .background-pull {
-  background-image: url(./images/pullbackground.png);
+  background-image: url(images/pullbackground.png);
   background-position: center;
   background-size:cover;
   background-repeat: no-repeat;
@@ -96,7 +96,7 @@ span {
 
 }
 .background-legs {
-  background-image: url(./images/legsbackground.png);
+  background-image: url(images/legsbackground.png);
   background-position: center;
   background-size:cover;
   background-repeat: no-repeat;
