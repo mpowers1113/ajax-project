@@ -9,7 +9,7 @@ html {
 }
 
 .background-main-page{
-  background-image: url(images/mainbackground.png);
+  background-image: url(../images/mainbackground.png);
   background-position: center;
   background-size:cover;
   background-attachment: fixed;
