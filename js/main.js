@@ -22,6 +22,8 @@ var $body = document.querySelector('body');
 var $addIcons = document.querySelectorAll('.fa-plus');
 var $deleteIcons = document.querySelectorAll('.fa-minus-circle');
 var $completedWorkouts = document.querySelector('.completed-workouts');
+var $errorOverlay = document.querySelector('.error-overlay');
+var $loadingSpinner = document.querySelector('.loader');
 var $completedWorkoutsUl = document.querySelector('.completed-workouts-ul');
 
 // ----------Toggle New Entries ----------
@@ -110,7 +112,7 @@ function renderList (randomIndexes, muscleGroup, key){
     $secondDownArrow.className = 'orange-text ml-1 fas fa-angle-down';
     var $newP = document.createElement('p');
     $newP.textContent = 'double-tap to change';
-    $newP.className ="orange-text no-margin";
+    $newP.className ="small orange-text no-margin";
     var $thirdDiv = document.createElement('div');
     $thirdDiv.className = 'row description hidden';
     var $thirdP = document.createElement('p');
@@ -223,7 +225,7 @@ function generateRandomLI (muscleGroup){
   $secondDownArrow.className = 'orange-text ml-1 fas fa-angle-down';
   var $newP = document.createElement('p');
   $newP.textContent = 'double-tap to change';
-  $newP.className ="orange-text no-margin";
+  $newP.className ="small orange-text no-margin";
   var $thirdDiv = document.createElement('div');
   $div.appendChild($firstDownArrow);
   $thirdDiv.className = 'row description hidden';
@@ -404,8 +406,7 @@ function renderCompletedWorkouts(){
 }
 
 
-$completedWorkouts.addEventListener('click', returnCompletedWorkoutsLi);
-
+$completedWorkouts.addEventListener('click', returnCompletedWorkoutsLi)
 
 //-----------Toggle Description-------------
 
@@ -428,12 +429,17 @@ function fetchExercises() {
     return;
   }
   const xhr = new XMLHttpRequest();
+  $loadingSpinner.classList.remove('hidden');
 
   xhr.open("GET", "https://wger.de/api/v2/exercise/?language=2&limit=300");
   xhr.responseType = 'json';
   xhr.addEventListener('load', function(){
     console.log(xhr.status);
-    data = xhr.response.results;
+    if (xhr.status !== 200){
+      $errorOverlay.classList.remove('hidden');
+    }
+    data = xhr.response.results;    
+    $loadingSpinner.classList.add('hidden');
     for (var i = 0; i < data.length; i++){
       var eachItem = data[i];
     

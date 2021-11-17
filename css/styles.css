@@ -18,6 +18,18 @@ html {
   height: 150vh;
 }
 
+.error-overlay {
+  color: var(--dark-grey);
+  height: inherit;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);  
+}
+
 .overlay {
   color: var(--dark-grey);
   height: inherit;
@@ -71,7 +83,7 @@ h2 {
 }
 
 .header {
-  padding: 3rem 1rem 1rem 1rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -111,6 +123,10 @@ li {
   padding: 0;
 }
 
+.small {
+  font-size: smaller;
+}
+
 .fas::before {
   cursor: pointer;
   margin-left: 1rem;
@@ -118,16 +134,21 @@ li {
 
 .fa-minus-circle::before {
   cursor: pointer;
+  font-size: smaller;
 }
 
 .fa-check::before {
   cursor: pointer;
-  margin-left: .5rem;
+  margin-left: 1rem;
+  font-size: smaller;
 }
 
 .fa-plus {
   cursor: pointer;
-  margin-left: 1rem;
+}
+
+.flex-column {
+  flex-direction: column;
 }
 
 .column-80 {
