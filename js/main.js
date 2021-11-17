@@ -22,6 +22,7 @@ var $body = document.querySelector('body');
 var $addIcons = document.querySelectorAll('.fa-plus');
 var $deleteIcons = document.querySelectorAll('.fa-minus-circle');
 var $completedWorkouts = document.querySelector('.completed-workouts');
+var $errorOverlay = document.querySelector('.error-overlay');
 var $loadingSpinner = document.querySelector('.loader');
 var $completedWorkoutsUl = document.querySelector('.completed-workouts-ul');
 
@@ -424,16 +425,19 @@ $allUl.forEach(item => item.addEventListener('click', toggleDescriptionHandler))
 window.addEventListener('load', fetchExercises);
 
 function fetchExercises() {
-  $loadingSpinner.classList.remove('hidden');
   if (exercises.delts.length !== 0){
     return;
   }
   const xhr = new XMLHttpRequest();
+  $loadingSpinner.classList.remove('hidden');
 
   xhr.open("GET", "https://wger.de/api/v2/exercise/?language=2&limit=300");
   xhr.responseType = 'json';
   xhr.addEventListener('load', function(){
     console.log(xhr.status);
+    if (xhr.status !== 200){
+      $errorOverlay.classList.remove('hidden');
+    }
     data = xhr.response.results;    
     $loadingSpinner.classList.add('hidden');
     for (var i = 0; i < data.length; i++){

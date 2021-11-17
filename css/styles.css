@@ -18,6 +18,18 @@ html {
   height: 150vh;
 }
 
+.error-overlay {
+  color: var(--dark-grey);
+  height: inherit;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);  
+}
+
 .overlay {
   color: var(--dark-grey);
   height: inherit;
@@ -133,6 +145,10 @@ li {
 
 .fa-plus {
   cursor: pointer;
+}
+
+.flex-column {
+  flex-direction: column;
 }
 
 .column-80 {

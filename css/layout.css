@@ -43,7 +43,7 @@ span {
 
 .row {
   display: flex;
-  max-width: 800px;
+  max-width: 1000px;
   color: whitesmoke;
   padding: 1rem;
 }
