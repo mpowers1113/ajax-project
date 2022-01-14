@@ -1,14 +1,14 @@
 # PPL App
 
-## An application for weight lifters who want to optimize their workout and add variation to their Push/Pull/Legs (PPL) split. The PPL split is the most common and arguably most efficient workout split that divides workouts by their primary movement. 
+# An application for weight lifters who want to optimize their workout and add variation to their Push/Pull/Legs (PPL) split. The PPL split is the most common and arguably most efficient workout split that divides workouts by their primary movement. 
 
 ### -Push: Shoulders, Chest, Triceps
 ### -Pull: Back, Biceps
 ### -Legs: Glutes, Quads, Hamstrings
 
-## Target Demographics: Weightlifters, gym-goers, fitness-enthusiasts. 
+# Target Demographics: Weightlifters, gym-goers, fitness-enthusiasts. 
 
-## Features: 
+# Features: 
 
 1. User can generate a workout by Push, Pull, or Legs focus. 
 
